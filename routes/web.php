@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test/git',function (){
-    echo 'success';
+    echo 'done';
 });
