@@ -24,7 +24,7 @@ if (empty($requestBody)) {
 }
 $content = json_decode($requestBody, true);
 //若是主分支且提交数大于0
-if ($content['ref']=='refs/heads/master' && $content['total_commits_count']>0) {
+if ($content['ref']=='refs/heads/master') {
     // 项目路径
     start_shell("/home/forge/sb-sth/",$content,$time,$gitLogPath.$fileName);
 }
