@@ -32,8 +32,7 @@ class UserController extends BaseController
         if(empty($user))
             return $this->makeResponseJson([],4004,'账号'.$account.'未注册');
         $salt = $user->salt;
-        $password = encrypt($password.$salt);
-        if($user->password != $password)
+        if($password.$salt != decrypt($user->password))
             return $this->makeResponseJson([],4003,'密码错误');
         $token = Auth::guard('jwt')->login($user);
         return $this->makeResponseJson(compact('token'));
