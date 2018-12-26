@@ -23,6 +23,12 @@
     import { servicePostList } from '../../service/post';
     import { WEB_URI } from '../../service/config';
     export default {
+        props:{
+            is_self:{
+                type:Number,
+                default:0
+            }
+        },
         data() {
             return {
                 list:[],
@@ -30,7 +36,7 @@
         },
         created(){
             this.$Loading.start();
-            servicePostList((res)=>{
+            servicePostList(this.is_self,(res)=>{
                 let meta = res.data.meta;
                 if(meta.code === 0){
                     let data = res.data.data;

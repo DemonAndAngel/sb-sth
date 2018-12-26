@@ -8,6 +8,7 @@ export const WEB_URI = {
     postDetail:HOST+'post/detail',
     userLogin:HOST+'user/login',
     userRegister:HOST+'user/register',
+    userPostList:HOST+'user/post/list',
 };
 export const API_URI = {
     userLogin:API_BASE_URI+'user/login',

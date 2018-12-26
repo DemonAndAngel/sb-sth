@@ -37,7 +37,7 @@
                             终于等到你。{{ user_data.nickname }}
                         </template>
                         <MenuGroup title="文章">
-                            <MenuItem name="user-post-my">
+                            <MenuItem name="user-post-list">
                                 <Icon type="ios-document" />
                                 我的文章
                             </MenuItem>
@@ -84,12 +84,16 @@
                     case 'user-post-edit':
                         window.location.href = WEB_URI.postEdit;
                         break;
+                    case 'user-post-list':
+                        window.location.href = WEB_URI.userPostList;
+                        break;
                     case 'user-logout':
                         serviceUserLogout((res)=>{
                             window.location.href = WEB_URI.userLogin;
                         },(err)=>{
                         })
                         break;
+
                 }
 
             },

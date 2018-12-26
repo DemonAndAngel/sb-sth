@@ -17,4 +17,9 @@ class UserController extends BaseController
         $pageInfo = $this->getPageInfo('立即注册','user');
         return view('user.register',compact('pageInfo','url'));
     }
+    public function postList(Request $request){
+        $is_self = 1;
+        $pageInfo = $this->getPageInfo('怎么看都是好文章','user');
+        return view('post.lists',compact('pageInfo','is_self'));
+    }
 }

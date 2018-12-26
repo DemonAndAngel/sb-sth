@@ -70,6 +70,8 @@ class Post extends Model
             'id' => $this->id,
             'title' => $this->title,
             'content' => $content,
+            'updated_at'=>$this->updated_at->format('Y-m-d H:i'),
+            'released_at'=>$this->released_at?$this->released_at->format('Y-m-d H:i'):''
         ];
     }
 

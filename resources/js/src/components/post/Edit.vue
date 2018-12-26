@@ -36,35 +36,46 @@
     import { servicePostDraft,servicePostRelease } from '../../service/post';
     import { WEB_URI } from '../../service/config';
     export default {
+        props:{
+            post_data:{
+                type: Object,
+                default:{
+                    id:0,
+                    title:'',
+                    content:'',
+                    updated_at:'',
+                    released_at:'',
+                }
+            },
+        },
         data() {
             return {
-                post_id:0,
-                formInput: {
-                    title: '',
-                    content: ''
-                },
+                formInput:{},
                 disabled:false,
-            };
+            }
+        },
+        created(){
+          this.formInput = this.post_data
         },
         components: {
             MarkdownTextarea
         },
         methods: {
             changeValue(value) {
-                this.formInput.content = value
+                this.post_data.content = value
             },
             submit() {
                 this.disabled = true;
                 this.$Loading.start();
-                servicePostDraft(this.post_id,this.formInput.title,this.formInput.content,(res)=>{
+                servicePostDraft(this.formInput.id,this.formInput.title,this.formInput.content,(res)=>{
                     let meta = res.data.meta;
                     if(meta.code !== 0){
                         this.$Message.error(meta.msg);
                         this.error();
                     }else{
                         let data = res.data.data;
-                        this.post_id = data.post_id;
-                        servicePostRelease(this.post_id,
+                        this.formInput = data.post;
+                        servicePostRelease(this.formInput.id,
                             (res)=>{
                                 meta = res.data.meta;
                                 if(meta.code !== 0){
@@ -73,7 +84,7 @@
                                 }else{
                                     data = res.data.data;
                                     this.$Message.success('发布成功');
-                                    window.location.href = WEB_URI.postDetail+'/'+data.post_id;
+                                    window.location.href = WEB_URI.postDetail+'/'+data.post.id;
                                 }
                                 this.$Loading.finish();
                             },

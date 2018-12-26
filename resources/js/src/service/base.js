@@ -1,13 +1,5 @@
-export function serviceGet(url, params, thenCallback, failCallBack, headers) {
-    if (!headers) {
-        headers = {};
-    }
-    axios({
-        url: url,
-        method: 'get',
-        data: params,
-        headers: headers,
-    }).then((res) => {
+export function serviceGet(url, params, thenCallback, failCallBack) {
+    axios.get(url,{params}).then((res) => {
         thenCallback(res);
     }).catch((err) => {
         failCallBack(err);

@@ -25,6 +25,11 @@ Route::get('/user/register',[
     'uses'=>'Web\UserController@register'
 ]);
 
+Route::get('/user/post/list',[
+    'as'=>'user-post-list',
+    'uses'=>'Web\UserController@postList'
+])->middleware('auth:web');
+
 
 Route::get('/post',[
     'as'=>'post',
@@ -36,7 +41,7 @@ Route::get('/post/detail/{post_id}',[
     'uses'=>'Web\PostController@detail'
 ]);
 
-Route::get('/post/edit',[
+Route::get('/post/edit/{post_id?}',[
     'as'=>'post-edit',
     'uses'=>'Web\PostController@edit'
 ])->middleware('auth:web');
