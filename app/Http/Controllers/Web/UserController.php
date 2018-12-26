@@ -15,6 +15,6 @@ class UserController extends BaseController
     public function register(Request $request){
         $url = $request->get('url','');
         $pageInfo = $this->getPageInfo('立即注册','user');
-        return view('user.register',compact('pageInfo',$url));
+        return view('user.register',compact('pageInfo','url'));
     }
 }
