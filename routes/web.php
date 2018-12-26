@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[
+    'as'=>'post',
+    'uses'=>'Web\PostController@lists'
+]);
 
 Route::get('/user/login',[
     'as'=>'user-login',
