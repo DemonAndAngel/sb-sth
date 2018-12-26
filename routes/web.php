@@ -31,6 +31,11 @@ Route::get('/post',[
     'uses'=>'Web\PostController@lists'
 ]);
 
+Route::get('/post/detail/{post_id}',[
+    'as'=>'post',
+    'uses'=>'Web\PostController@detail'
+]);
+
 Route::get('/post/edit',[
     'as'=>'post-edit',
     'uses'=>'Web\PostController@edit'

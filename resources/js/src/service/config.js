@@ -5,6 +5,7 @@ export const WEB_URI = {
     index:HOST,
     postList:HOST+'post',
     postEdit:HOST+'post/edit',
+    postDetail:HOST+'post/detail',
     userLogin:HOST+'user/login',
     userRegister:HOST+'user/register',
 };

@@ -10,7 +10,7 @@
 <template>
     <div class="list">
         <Card :key="item.id" class="card" v-for="item in list">
-            <p slot="title">{{ item.title }}</p>
+            <a slot="title" @click="detail(item.id)">{{ item.title }}</a>
             <p>
                 <markdown-textarea class="content" :value="item.content"
                                    :isPreview="true"></markdown-textarea>
@@ -21,6 +21,7 @@
 <script>
     import MarkdownTextarea from '../libs/MarkdownTextarea.vue';
     import { servicePostList } from '../../service/post';
+    import { WEB_URI } from '../../service/config';
     export default {
         data() {
             return {
@@ -28,19 +29,25 @@
             };
         },
         created(){
+            this.$Loading.start();
             servicePostList((res)=>{
                 let meta = res.data.meta;
                 if(meta.code === 0){
                     let data = res.data.data;
                     this.list = data.posts;
                 }
-            },(err)=>{})
+                this.$Loading.finish();
+            },(err)=>{
+                this.$Loading.error();
+            })
         },
         components: {
             MarkdownTextarea
         },
         methods: {
-
+            detail:(id)=>{
+                window.location.href = WEB_URI.postDetail+'/'+id;
+            }
         },
     }
 </script>

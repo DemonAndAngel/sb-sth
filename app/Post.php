@@ -60,6 +60,18 @@ class Post extends Model
             'content' => $content,
         ];
     }
+    public function toDetailData(){
+        $details = $this->details()->orderBy('page')->get();
+        $content = '';
+        foreach ($details as $detail){
+            $content.=$detail->content;
+        }
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'content' => $content,
+        ];
+    }
 
     public function updatePostStatus($is_draft, $is_open, $is_release)
     {

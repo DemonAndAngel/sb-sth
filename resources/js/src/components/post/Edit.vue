@@ -25,7 +25,7 @@
                                    :isPreview="false"></markdown-textarea>
             </FormItem>
             <FormItem style="text-align: center">
-                <Button class="button" type="primary" @click="submit">发布</Button>
+                <Button class="button" type="primary" @click="submit" :disabled="disabled">发布</Button>
                 <Button class="button">取消</Button>
             </FormItem>
         </Form>
@@ -34,6 +34,7 @@
 <script>
     import MarkdownTextarea from '../libs/MarkdownTextarea.vue';
     import { servicePostDraft,servicePostRelease } from '../../service/post';
+    import { WEB_URI } from '../../service/config';
     export default {
         data() {
             return {
@@ -41,7 +42,8 @@
                 formInput: {
                     title: '',
                     content: ''
-                }
+                },
+                disabled:false,
             };
         },
         components: {
@@ -52,10 +54,13 @@
                 this.formInput.content = value
             },
             submit() {
+                this.disabled = true;
+                this.$Loading.start();
                 servicePostDraft(this.post_id,this.formInput.title,this.formInput.content,(res)=>{
                     let meta = res.data.meta;
                     if(meta.code !== 0){
                         this.$Message.error(meta.msg);
+                        this.error();
                     }else{
                         let data = res.data.data;
                         this.post_id = data.post_id;
@@ -64,18 +69,26 @@
                                 meta = res.data.meta;
                                 if(meta.code !== 0){
                                     this.$Message.error(meta.msg);
+                                    this.error();
                                 }else{
+                                    data = res.data.data;
                                     this.$Message.success('发布成功');
+                                    window.location.href = WEB_URI.postDetail+'/'+data.post_id;
                                 }
+                                this.$Loading.finish();
                             },
                             (err)=>{
-
+                                this.error();
                             }
                         )
                     }
                 },(err)=>{
-
+                    this.error();
                 })
+            },
+            error(){
+                this.$Loading.error();
+                this.disabled = false;
             }
         },
     }

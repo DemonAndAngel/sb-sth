@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -10,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 import iView from 'iview';
 import './src/less/theme.less';
+import {WEB_URI} from "./src/service/config";
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -25,7 +25,16 @@ Vue.component('user-register', require('./src/components/user/Register.vue'));
 
 Vue.component('post-list', require('./src/components/post/List.vue'));
 Vue.component('post-edit', require('./src/components/post/Edit.vue'));
+Vue.component('post-detail', require('./src/components/post/Detail.vue'));
 
 const app = new Vue({
     el: '#app'
+});
+
+axios.interceptors.response.use((res) => {
+    if(res.data.meta.code === 403){
+        app.$Message.info(res.data.meta.msg);
+        window.location.href = WEB_URI.userLogin;
+    }
+    return res;
 });
