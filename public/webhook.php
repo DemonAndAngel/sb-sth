@@ -26,7 +26,7 @@ $content = json_decode($requestBody, true);
 //若是主分支且提交数大于0
 if ($content['ref']=='refs/heads/master') {
     // 项目路径
-    start_shell("/home/forge/sb-sth/",$content,$time,$gitLogPath.$fileName);
+    start_shell("/www/wwwroot/sb-sth/",$content,$time,$gitLogPath.$fileName);
 }
 file_put_contents($gitLogPath.$fileName, '---请求结束---'.PHP_EOL, FILE_APPEND);
 function start_shell($path,$content,$time,$gitLogFullPath){

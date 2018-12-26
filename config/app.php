@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh-CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,9 +162,8 @@ return [
 
         // jwt
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-
+        // log-viewer
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
-
     ],
 
     /*
@@ -213,7 +212,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
 
 ];

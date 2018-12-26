@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user/login',[
+    'as'=>'user-login',
+    'uses'=>'Web\UserController@login'
+]);
+Route::get('/user/register',[
+    'as'=>'user-register',
+    'uses'=>'Web\UserController@register'
+]);
+
+
+Route::get('/post',[
+    'as'=>'post',
+    'uses'=>'Web\PostController@lists'
+]);
+
+Route::get('/post/edit',[
+    'as'=>'post-edit',
+    'uses'=>'Web\PostController@edit'
+])->middleware('auth:web');
