@@ -1,5 +1,5 @@
-export const HOST = process.env.NODE_ENV === 'development'?'http://sb-sth.com/':'http://caideyu.top/';
-export const API_BASE_URI = process.env.NODE_ENV === 'development'?'http://sb-sth.com/api/':'http://caideyu.top/api/';
+export const HOST = process.env.NODE_ENV === 'development'?'http://sb-sth.com/':'https://caideyu.top/';
+export const API_BASE_URI = process.env.NODE_ENV === 'development'?'http://sb-sth.com/api/':'https://caideyu.top/api/';
 
 export const WEB_URI = {
     index:HOST,
