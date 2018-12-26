@@ -12,7 +12,7 @@
 */
 
 Route::get('/',[
-    'as'=>'post',
+    'as'=>'index',
     'uses'=>'Web\PostController@lists'
 ]);
 

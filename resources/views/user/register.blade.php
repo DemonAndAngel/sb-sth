@@ -1,4 +1,4 @@
 @extends('layout')
 @section('content')
-    <user-register></user-register>
+    <user-register url="{{ $url }}"></user-register>
 @endsection

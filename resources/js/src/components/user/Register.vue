@@ -63,6 +63,12 @@
     import { serviceUserRegister } from '../../service/user';
     import {WEB_URI} from '../../service/config';
     export default {
+        props:{
+            url:{
+                type:String,
+                default:''
+            }
+        },
         data () {
             let validatePasswordC = (rule, value, callback)=>{
                 let password = this.formInput.password
@@ -105,7 +111,16 @@
                             this.formInput.password,
                             this.formInput.nickname,
                             (res)=>{
-                                console.log(res)
+                                let meta = res.data.meta;
+                                if(meta.code !== 0)
+                                    this.$Message.error(meta.msg);
+                                else{
+                                    if(this.url){
+                                        window.location.href = this.url;
+                                    }else{
+                                        window.location.href = WEB_URI.index;
+                                    }
+                                }
                             },
                             (err)=> {
 
