@@ -25,7 +25,7 @@ class Post extends Model
 
     public static function editPost($post,$user_id, $title, $content, $is_draft = true, $is_open = false)
     {
-        $size = 50;
+        $size = 1000;
         $total = Str::length($content);
         $totalPage = ceil($total / $size);
         if(empty($post)){
