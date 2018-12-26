@@ -55,7 +55,7 @@
                 subfield:true,
                 defaultOpen:'',
                 file_list:[],
-                mdStyle:"z-index:1500 !important"
+                mdStyle:"z-index:1 !important"
             }
         },
         components: {
@@ -86,7 +86,7 @@
                 if(status){
                     this.mdStyle = 'z-index:9999 !important';
                 }else{
-                    this.mdStyle = 'z-index:1500 !important';
+                    this.mdStyle = 'z-index:1 !important';
                 }
             }
         }

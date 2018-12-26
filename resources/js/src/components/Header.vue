@@ -7,7 +7,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index:1600 !important;
     }
     .text{
         color:#fff
